@@ -1,51 +1,182 @@
 * {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background: radial-gradient(circle at center, #4a3073 10%, #3a255d 50%);
+    font-family: 'Quicksand', sans-serif;
+    color: #e0d9f7;
+    padding: 2em;
+}
+
+/* Título principal */
 h1 {
-    font-size: 65px;
-    background-color: lightgreen;
-    color: aliceblue;
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    color: #c9a3ff;
     padding: 1em;
+    text-align: center;
+    text-shadow: 1px 1px 4px rgba(201, 163, 255, 0.2);
+}
+
+/* Contenedor principal */
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 17px;
+}
+
+/* Sección nueva tarea */
+.nueva {
+    background-color: #4a3474;
+    width: 25%;
+    min-width: 250px;
+    padding: 1.5em;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid #8e70c1;
+    box-shadow: 2px 2px 12px rgba(201, 163, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sección tareas */
+.tareas {
+    background-color: #5a3b85;
+    width: 45%;
+    min-width: 300px;
+    padding: 1.5em;
+    border-radius: 15px;
+    border: 2px solid #a58cd1;
+    box-shadow: 2px 2px 12px rgba(201, 163, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Buscador */
+.buscador {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Lista de tareas */
+.chek {
+    list-style: none;
+    line-height: 2.5em;
+    color: #f0eaff;
+}
+
+.chek input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Botones */
+.btn-add, .btn-buscar {
+    background-color: #b28fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add:hover, .btn-buscar:hover {
+    background-color: #9d78f7;
+}
+
+/* Inputs */
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #f8f2ff;
+    color: #3b2b4f;
+}
+
+
+
+
+/* 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f5f7f8;
+}
+
+h1 {
+    font-size: 44px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #3f8eaa;
+    padding: 1em;
+    text-align: center;
 }
 .main{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 18px;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
     
 }
 
 
 .nueva {
     padding: 1em;
-    background-color:rgb(245, 205, 243);
+    background-color: #e4ecf1;
     display: flex;
     flex-direction: column;
     width: 25%;
     justify-content: top;
     text-align: center;
     padding-inline: 4em;
+    border: 2px solid #c3d4dc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .btn-add{
-    background-color: cadetblue;
+    background-color: #7ddcd3;
     border: none;
     padding-block: 5px;
     border-radius: 5px;
     margin-top: 10px;
+    color: white;
+    cursor: pointer;    
+}
+
+.btn-add:hover{
+    background-color: #55bcb3;
 }
 
 
 .tareas {
     padding: 1em;
-    background-color: darksalmon;
+    background-color: lightgray;
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 45%;
     justify-content: center;
     text-align: left;
+    border: 2px solid #a6a6a6; 
+    border-radius: 10px;        
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); 
+    
    
 }
 
@@ -54,16 +185,21 @@ h1 {
 }
 
 .chek {
-    color: blue;
+    color: rgb(63, 62, 62);
     list-style: none;
     line-height: 3em;
 }
 
 .btn-buscar{
-    background-color: cadetblue;
+    background-color: #7ddcd3;
     border: none;
     padding-block: 5px;
     padding-inline: 15px;
     border-radius: 5px;
     margin-top: 10px;
+    color: white;
+    cursor: pointer;
 }
+.btn-buscar:hover{
+    background-color: cadetblue;
+} */
