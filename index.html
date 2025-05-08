@@ -13,14 +13,15 @@
         <h1>Tareas de hada</h1>
     </header>
     <main class="main">
+        <div class="cuadros">
         <section class="nueva">
             <input type="text" placeholder="Nueva tarea" class="js-newTask">
             <button class="btn-add js-btn-add" > Agregar</button>
         </section>
         <section class="tareas">
             <article class="buscador">
-                <input type="text" placeholder="Ejemplo: gym">
-                <button class="btn-buscar"> Buscar</button>
+                <input type="text" placeholder="Ejemplo: gym" class="js-input-find">
+                <button class="btn-buscar js-btn-buscar"> Buscar</button>
             </article>
             <article class="lista">
             <ul class="chek js-check">
@@ -43,6 +44,7 @@
             </ul>
             </article>
         </section>
+    </div>
     </main>
     <script src="./js/main.js"> </script>
 </body>
