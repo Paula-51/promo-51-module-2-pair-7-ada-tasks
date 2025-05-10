@@ -1,77 +1,104 @@
-'use strict'
+// const tasks = [
+//   { name: "Recoger setas en el campo", completed: true, id: 1 },
+//   { name: "Comprar pilas", completed: true, id: 2 },
+//   { name: "Poner una lavadora de blancos", completed: true, id: 3 },
+//   {
+//     name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
+//     completed: false,
+//     id: 4,
+//   },
+// ];
 
-const btnAdd = document.querySelector(".js-btn-add");
+let tasks = [];
+
 const lista = document.querySelector(".js-check");
-const newTask = document.querySelector(".js-newTask");
-const newInput = document.querySelector(".js-input-find");
-const btnFind = document.querySelector(".js-btn-buscar");
-const tareas = [];
+const update = document.querySelector(".js_pendiente");
 
+function pintarTareas() {
+    lista.innerHTML = "";
+    tasks.forEach((task) => {
+        const li = document.createElement("li");
+        li.classList.add("chek");
 
-function cargarTareasIniciales() {
-  const labels = document.querySelectorAll(".js-check label");
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        // input.setAttribute("id", task.id);
+        input.id = task.id;
+        input.checked = task.completed;
 
-  labels.forEach(label => {
-    const texto = label.textContent.trim(); //innerText también funciona (si ni tiene ningún estilo CSS que lo oculte).
-    tareas.push(texto);
-  });
-}
+        const label = document.createElement("label");
+        // label.setAttribute("for", task.id);
+        // label.for = task.id;
+        label.textContent = task.name;
+        label.classList.toggle("tachar", task.completed);
 
-cargarTareasIniciales(); 
+        li.appendChild(input);
+        li.appendChild(label);
 
-function addTask(event) {
-    const tarea = newTask.value.trim();
-    if (!tarea) return; // evita tareas vacías y detiene la función de abajo 
+        lista.appendChild(li);
 
-    tareas.push(tarea); // añadimos la tarea al array
+        return lista; 
 
-    lista.innerHTML += `<li>
-        <input type="checkbox" id="${tarea}">
-        <label for="${tarea}">${tarea}</label>
-    </li>`;
-
-    newTask.value = ""; // limpiamos el input
-}
-
-function checkear(event) {
-    if (event.target.type === "checkbox") {
-      const label = event.target.nextElementSibling;
-      label.classList.toggle("tachar", event.target.checked);
-    }
-  }
-
-function buscar(event) {
-  const textoBuscado = newInput.value.trim().toLowerCase();
-
-  // if (!textoBuscado) {
-  //   return;
-  // }
-  
-  // Filtrar las tareas que contienen el texto buscado
-  const resultados = tareas.filter(tarea =>
-    tarea.toLowerCase().includes(textoBuscado)
-  );
-
-  // Limpiar la lista antes de agregar los resultados filtrados
-  lista.innerHTML = "";  
-
-  // Mostrar las tareas filtradas
-  if (resultados.length > 0) {
-    resultados.forEach(tarea => {
-      lista.innerHTML += `<li>
-        <input type="checkbox" id="${tarea}">
-        <label for="${tarea}">${tarea}</label>
-      </li>`;
     });
-  } 
 
-  // Limpiar el input de búsqueda
-  newInput.value = "";
 }
 
 
 
 
-btnAdd.addEventListener ("click", addTask);  
-lista.addEventListener("change", checkear);
-btnFind.addEventListener("click", buscar);
+const handleClickList = (event) => {
+    
+    const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
+    if (!taskId) return; // Si no ha pulsado en el checkbox, no queremos hacer nada y salimos de la función
+
+    const tarea = tasks.find((task) => task.id === taskId); 
+    // Si no existe la tarea, salimos de la función
+    if (!tarea) return;
+    // Si existe la tarea, actualizamos su propiedad completed
+    tarea.completed = event.target.checked; 
+    event.target.nextElementSibling.classList.toggle("tachar", tarea.completed);
+    contarTareas();
+};
+
+
+const GITHUB_USER = "paula-51";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
+
+
+//Completa el código;
+//Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
+
+ function contarTareas() {
+    update.innerHTML = "";
+    let contador_pendiente = 0;
+    let contador_completo = 0;
+    tasks.forEach((task) => {
+        if (!task.completed) {
+            contador_pendiente++;
+        }
+        else {
+            contador_completo++;
+        }
+    }); 
+    let contador_total = tasks.length;
+    update.innerHTML = `Tienes ${contador_total} tareas: ${contador_pendiente} tareas pendientes y ${contador_completo} tareas completadas.`;
+    return update;
+
+}
+
+
+fetch(SERVER_URL)
+  .then(response => response.json()) // <-- faltaba el return implícito
+  .then(data => {
+    tasks = data.results;
+    console.table(tasks);
+    pintarTareas();
+    contarTareas();
+  });
+
+ 
+
+
+
+lista.addEventListener("click", handleClickList);
+
