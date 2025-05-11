@@ -13,10 +13,12 @@ let tasks = [];
 
 const lista = document.querySelector(".js-check");
 const update = document.querySelector(".js_pendiente");
+const btnBuscar = document.querySelector(".js-btn-buscar");
+const inputFind = document.querySelector (".js-input-find");
 
-function pintarTareas() {
+function pintarTareas(tareas) {
     lista.innerHTML = "";
-    tasks.forEach((task) => {
+    tareas.forEach((task) => {
         const li = document.createElement("li");
         li.classList.add("chek");
 
@@ -42,9 +44,7 @@ function pintarTareas() {
     });
 
 }
-
-
- function contarTareas() {
+function contarTareas() {
     update.innerHTML = "";
     let contador_pendiente = 0;
     let contador_completo = 0;
@@ -62,6 +62,8 @@ function pintarTareas() {
 
 }
 
+
+
 const handleClickList = (event) => {
     
     const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
@@ -76,7 +78,24 @@ const handleClickList = (event) => {
     contarTareas();
 };
 
-
+function handleClickFilter(event) {
+    const valor = inputFind.value.toLowerCase().trim();
+  
+    if (valor === "") {
+      // Si el input está vacío, mostrar todas las tareas
+      pintarTareas(tasks);
+      return;
+    }
+  
+    const tareasFiltradas = tasks.filter((task) =>
+      task.name.toLowerCase().includes(valor)
+    );
+  
+      pintarTareas(tareasFiltradas);
+    
+  }
+  
+  
 const GITHUB_USER = "paula-51";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
@@ -87,18 +106,18 @@ const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
 
 
+
 fetch(SERVER_URL)
   .then(response => response.json()) // <-- faltaba el return implícito
   .then(data => {
     tasks = data.results;
     console.table(tasks);
-    pintarTareas();
+    pintarTareas(tasks);
     contarTareas();
   });
 
  
 
 
-
 lista.addEventListener("click", handleClickList);
-
+btnBuscar.addEventListener("click", handleClickFilter); 
