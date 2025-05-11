@@ -99,7 +99,19 @@ h1 {
 }
 
 /* Botones */
-.btn-add, .btn-buscar {
+.btn-add {
+    background-color: #b28fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.btn-buscar {
     background-color: #b28fff;
     border: none;
     padding: 8px 16px;
@@ -114,8 +126,8 @@ h1 {
     background-color: #9d78f7;
 }
 
-/* Inputs */
-input[type="text"] {
+
+/* input[type="text"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -124,4 +136,28 @@ input[type="text"] {
     width: 100%;
     background-color: #f8f2ff;
     color: #3b2b4f;
+} */
+
+.new-task {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #f8f2ff;
+    color: #3b2b4f;
+
+}
+
+.input-find {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #f8f2ff;
+    color: #3b2b4f;
+    
 }
