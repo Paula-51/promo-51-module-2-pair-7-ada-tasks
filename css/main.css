@@ -55,8 +55,10 @@ h1 {
     transition: transform 0.3s ease; /* Animación para el movimiento */
 }
 
-.nueva:hover {
-    transform: translateY(-10px); /* Movimiento hacia arriba */
+.nueva:hover,
+.tareas:hover {
+    transform: translateY(-10px);
+    box-shadow: 4px 4px 20px rgba(201, 163, 255, 0.467);
 }
 
 /* Sección tareas */
@@ -73,9 +75,6 @@ h1 {
     transition: transform 0.3s ease; /* Animación para el movimiento */
 }
 
-.tareas:hover {
-    transform: translateY(-10px); /* Movimiento hacia arriba */
-}
 
 /* Buscador */
 .buscador {
