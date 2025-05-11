@@ -43,8 +43,6 @@ function pintarTareas(tareas) {
 
         lista.appendChild(li);
 
-        return lista; 
-
     });
 }
 
@@ -154,33 +152,50 @@ function handleClickFilter(event) {
 const GITHUB_USER = "paula-51";
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
-const tasksLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+// Siempre pedir tareas al servidor para tener la versión más reciente
+fetch(SERVER_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    tasks = data.results;
+    console.table(tasks);
+    localStorage.setItem("tasks", JSON.stringify(tasks)); // opcional: guarda por si quieres volver a usarlo
+    pintarTareas(tasks);
+    contarTareas();
+  })
+  .catch((error) => {
+    console.error("Error al cargar las tareas del servidor", error);
+  });
 
-if (tasksLocalStorage !== null) {
-  // si (existe el listado de tareas en Local Storage)
-  // pinta la lista de tareas almacenadas en tasksLocalStorage
-  tasks = tasksLocalStorage; 
-  pintarTareas(tasks); 
-  contarTareas();
 
-} else {
-  //sino existe el listado de tareas en el local storage
-  // pide los datos al servidor
-  fetch(SERVER_URL)
-    .then((response) => response.json())
-    .then((data) => {
-      tasks = data.results;
-      console.table(tasks);
-      pintarTareas(tasks);
-      contarTareas();
+  // const tasksLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+
+// if (tasksLocalStorage !== null) {
+//   // si (existe el listado de tareas en Local Storage)
+//   // pinta la lista de tareas almacenadas en tasksLocalStorage
+//   tasks = tasksLocalStorage; 
+//   pintarTareas(tasks); 
+//   contarTareas();
+
+// } else {
+//   //sino existe el listado de tareas en el local storage
+//   // pide los datos al servidor
+//   fetch(SERVER_URL)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       tasks = data.results;
+//       console.table(tasks);
       
-      //guarda el listado obtenido en el Local Storage
-      // pinta la lista de tareas
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+//       localStorage.setItem("tasks", JSON.stringify(tasks));
+//       pintarTareas(tasks);
+//       contarTareas();
+      
+//       //guarda el listado obtenido en el Local Storage
+//       // pinta la lista de tareas
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// }
 
 
 
