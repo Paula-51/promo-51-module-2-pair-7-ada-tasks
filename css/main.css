@@ -81,6 +81,7 @@ h1 {
     margin-bottom: 15px;
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 /* Lista de tareas */
@@ -102,7 +103,7 @@ h1 {
 .btn-add {
     background-color: #b28fff;
     border: none;
-    padding: 8px 16px;
+    padding: 12px 16px;
     border-radius: 8px;
     color: white;
     font-weight: bold;
@@ -114,7 +115,8 @@ h1 {
 .btn-buscar {
     background-color: #b28fff;
     border: none;
-    padding: 8px 16px;
+    margin-top: -7px;
+    padding: 14px 16px;
     border-radius: 8px;
     color: white;
     font-weight: bold;
