@@ -44,7 +44,23 @@ function pintarTareas() {
 }
 
 
+ function contarTareas() {
+    update.innerHTML = "";
+    let contador_pendiente = 0;
+    let contador_completo = 0;
+    tasks.forEach((task) => {
+        if (!task.completed) {
+            contador_pendiente++;
+        }
+        else {
+            contador_completo++;
+        }
+    }); 
+    let contador_total = tasks.length;
+    update.innerHTML = `Tienes ${contador_total} tareas: ${contador_pendiente} tareas pendientes y ${contador_completo} tareas completadas.`;
+    return update;
 
+}
 
 const handleClickList = (event) => {
     
@@ -68,23 +84,7 @@ const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 //Completa el código;
 //Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
 
- function contarTareas() {
-    update.innerHTML = "";
-    let contador_pendiente = 0;
-    let contador_completo = 0;
-    tasks.forEach((task) => {
-        if (!task.completed) {
-            contador_pendiente++;
-        }
-        else {
-            contador_completo++;
-        }
-    }); 
-    let contador_total = tasks.length;
-    update.innerHTML = `Tienes ${contador_total} tareas: ${contador_pendiente} tareas pendientes y ${contador_completo} tareas completadas.`;
-    return update;
 
-}
 
 
 fetch(SERVER_URL)
